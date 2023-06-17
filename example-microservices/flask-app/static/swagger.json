@@ -1,0 +1,29 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+      "title": "Flask App API",
+      "version": "1.0"
+    },
+    "paths": {
+      "/add": {
+        "post": {
+          "summary": "Add a user",
+          "responses": {
+            "201": {
+              "description": "User added"
+            }
+          }
+        }
+      },
+      "/users": {
+        "get": {
+          "summary": "Get all users",
+          "responses": {
+            "200": {
+              "description": "A list of users"
+            }
+          }
+        }
+      }
+    }
+  }

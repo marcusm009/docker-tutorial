@@ -1,0 +1,23 @@
+version: "3.8"
+services:
+  flask-app:
+    build: ./flask-app
+    ports:
+      - "5000:5000"
+    links:
+      - mongo-db
+      - aspnet-app
+    depends_on:
+      - mongo-db
+      - aspnet-app
+  mongo-db:
+    build: ./mongo-db
+    ports:
+      - "27017:27017"
+  aspnet-app:
+    build: ./aspnet-app
+    environment:
+      - "DOTNET_ENVIRONMENT=${ENV}"
+    ports:
+      - "8000:80" # asp.net core image listens on port 80
+    # - "to:from"
