@@ -6,15 +6,29 @@ This tutorial will cover the basics of Docker including installation, Dockerfile
 
 ## Table of Contents
 
-1. Benefits of Using Docker
-2. Docker Architecture
-3. Installing Docker
-4. Docker Images
-5. Docker Containers
-6. Dockerfile
-7. Docker Compose
-8. Basic Docker Commands
-9. Conclusion
+* [Benefits of Using Docker](#benefits-of-using-docker)
+* [Docker Architecture](#docker-architecture)
+* [Installing Docker](#installing-docker)
+  * [Windows and macOS](#windows-and-macos)
+  * [Linux (Ubuntu as an example)](#linux-ubuntu-as-an-example)
+* [Docker Images](#docker-images)
+  * [Pulling a Docker Image](#pulling-a-docker-image)
+  * [Listing Docker Images](#listing-docker-images)
+* [Docker Containers](#docker-containers)
+  * [Running a Docker Container](#running-a-docker-container)
+    * [Important Options With `docker run`](#important-options-with-docker-run)
+  * [Listing Docker Containers](#listing-docker-containers)
+* [Dockerfile](#dockerfile)
+  * [Important Dockerfile Commands](#important-dockerfile-commands)
+* [Docker Compose](#docker-compose)
+* [Docker Command Cheat Sheet](#docker-command-cheat-sheet)
+  * [Docker Images](#docker-images-1)
+  * [Docker Containers](#docker-containers-1)
+  * [Docker Compose](#docker-compose-1)
+  * [Docker System](#docker-system)
+  * [Other Commands](#other-commands)
+* [Conclusion and Next Steps](#conclusion-and-next-steps)
+  * [Examples](#examples)
 
 ## Benefits of Using Docker
 
@@ -120,25 +134,25 @@ docker run nginx
 
 #### Important Options With `docker run`
 
-* -d, --detach: This option runs the container in the background and returns the container ID. If you don't use this option, your terminal will attach to the container's standard output and you won't be able to use the terminal until you stop the container.
+* `-d`, `--detach`: This option runs the container in the background and returns the container ID. If you don't use this option, your terminal will attach to the container's standard output and you won't be able to use the terminal until you stop the container.
 
-* -i, --interactive: This option keeps STDIN open, even if not attached. This can be useful if you want to provide input to the container at some point.
+* `-i`, `--interactive`: This option keeps STDIN open, even if not attached. This can be useful if you want to provide input to the container at some point.
 
-* -t, --tty: This option allocates a pseudo-TTY. This is generally used in combination with -i to provide an interactive shell.
+* `-t`, `--tty`: This option allocates a pseudo-TTY. This is generally used in combination with -i to provide an interactive shell.
 
-* -p, --publish: This option binds a container's port to a host port so that the application inside the container can be accessed from outside the Docker host. The syntax is -p host_port:container_port.
+* `-p`, `--publish`: This option binds a container's port to a host port so that the application inside the container can be accessed from outside the Docker host. The syntax is -p host_port:container_port.
 
-* --name: This option lets you assign a name to the container, which can be useful for identifying and managing containers.
+* `--name`: This option lets you assign a name to the container, which can be useful for identifying and managing containers.
 
-* -v, --volume: This option lets you mount host directories or volumes into the container. This is useful for data persistence or sharing data between the host and the container.
+* `-v`, `--volume`: This option lets you mount host directories or volumes into the container. This is useful for data persistence or sharing data between the host and the container.
 
-* -e, --env: This option lets you set environment variables in the container. This can be useful for configuring the application inside the container.
+* `-e`, `--env`: This option lets you set environment variables in the container. This can be useful for configuring the application inside the container.
 
-* --rm: This option automatically removes the container when it exits. This can be useful for cleanup, especially during development when you might be creating and destroying containers frequently.
+* `--rm`: This option automatically removes the container when it exits. This can be useful for cleanup, especially during development when you might be creating and destroying containers frequently.
 
-* --restart: This option sets a restart policy for how to handle container exits. The options are no, on-failure[:max-retries], always, unless-stopped.
+* `--restart`: This option sets a restart policy for how to handle container exits. The options are no, on-failure[:max-retries], always, unless-stopped.
 
-* --network: This option connects a container to a network. You can use it to connect to the default network, a user-defined network, or even disable networking.
+* `--network`: This option connects a container to a network. You can use it to connect to the default network, a user-defined network, or even disable networking.
 
 Here is an example of how to use some of these options together:
 
@@ -182,16 +196,27 @@ docker build -t my-python-app .
 ### Important Dockerfile Commands
 
 * `FROM` - This command sets the base image for subsequent instructions. A Dockerfile must start with a `FROM` instruction.
+
 * `LABEL` - The `LABEL` instruction adds metadata to an image.
+
 * `RUN` - The `RUN` command is used to run any commands in a new layer on top of the current image and commit the results.
+
 * `CMD` - Provides defaults for an executing container. It can include an executable, or they can omit the executable, in which case you must specify an `ENTRYPOINT` command.
+
 * `EXPOSE` - The `EXPOSE` instruction informs Docker that the container listens on the specified network ports at runtime.
+
 * `ENV` - The `ENV` instruction sets the environment variable to the value.
+
 * `ADD` - The `ADD` instruction copies new files, directories, or remote file URLs from <src> and adds them to the filesystem of the image at the path <dest>.
+
 * `COPY` - The `COPY` command copies new files or directories from <src> and adds them to the filesystem of the container at the path <dest>.
+
 * `ENTRYPOINT` - Allows you to configure a container that will run as an executable.
+
 * `WORKDIR` - The `WORKDIR` directive is used to set where the command defined with `CMD` is to be executed.
+
 * `VOLUME` - The `VOLUME` command is used to enable access/linked directories between the container and the host.
+
 * `USER` - The `USER` instruction sets the user name (or UID) and optionally the user group (or GID) to use when running the image and for any `RUN`, `CMD`, and `ENTRYPOINT` instructions that follow it in the Dockerfile.
 
 Here's a slightly more comprehensive Dockerfile that contains examples of some of these commands:
