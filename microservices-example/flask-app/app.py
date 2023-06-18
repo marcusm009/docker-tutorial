@@ -10,7 +10,7 @@ def transform_mongo_data(data):
 
 # Swagger UI setup
 SWAGGER_URL = '/swagger'  # URL for exposing Swagger UI
-API_URL = '/static/swagger.json'  # Our Swagger schema file
+API_URL = '/static/swagger.yml'  # Our Swagger schema file
 
 app = Flask(__name__)
 

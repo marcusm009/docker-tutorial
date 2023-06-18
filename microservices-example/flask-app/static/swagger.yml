@@ -1,0 +1,34 @@
+---
+openapi: 3.0.1
+info:
+  title: Flask App API
+  version: '1.0'
+paths:
+  "/add":
+    post:
+      summary: Add a user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: John Doe
+                email:
+                  type: string
+                  example: john@example.com
+              required:
+                - name
+                - email
+      responses:
+        '201':
+          description: User added
+  "/users":
+    get:
+      summary: Get all users
+      responses:
+        '200':
+          description: A list of users

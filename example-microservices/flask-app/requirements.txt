@@ -1,4 +1,0 @@
-flask
-flask_pymongo
-requests
-flask-swagger-ui

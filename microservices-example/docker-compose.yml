@@ -4,9 +4,8 @@ services:
     build: ./flask-app
     ports:
       - "5000:5000"
-    links:
-      - mongo-db
-      - aspnet-app
+    networks:
+      - microservices
     depends_on:
       - mongo-db
       - aspnet-app
@@ -14,10 +13,22 @@ services:
     build: ./mongo-db
     ports:
       - "27017:27017"
+    networks:
+      - microservices
+    volumes:
+      - mongo-data:/data/db
   aspnet-app:
     build: ./aspnet-app
-    environment:
-      - "DOTNET_ENVIRONMENT=${ENV}"
     ports:
       - "8000:80" # asp.net core image listens on port 80
     # - "to:from"
+    networks:
+      - microservices
+    environment:
+      - "DOTNET_ENVIRONMENT=${ENV}"
+
+volumes:
+  mongo-data:
+
+networks:
+  microservices:
